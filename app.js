@@ -2,8 +2,8 @@ const express = require('express');
 const _ = require('lodash');
 
 // Start user defined modules
-const strHelper = require(`${__dirname}\\modules\\stringHelper.js`);
-const dateHelper = require(`${__dirname}\\modules\\dateHelper.js`);
+const strHelper = require(`${__dirname}/modules/stringHelper.js`);
+const dateHelper = require(`${__dirname}/modules/dateHelper.js`);
 // End user defined modules
 
 const app = express();
