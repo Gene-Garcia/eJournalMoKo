@@ -17,12 +17,22 @@ app.use(express.static(__dirname+'/public'));
 const about = "In urna mi, posuere nec scelerisque a, pharetra elementum eros. Donec congue mattis libero, sed venenatis eros semper in. Nullam vitae elit suscipit, volutpat tortor ac, sagittis lectus. Curabitur efficitur nunc tellus, vulputate blandit tortor dignissim eu. Donec et fermentum mauris, sed ullamcorper nibh. Morbi consectetur sollicitudin lectus, faucibus congue erat placerat id. Cras consectetur ac nulla at pharetra.";
 const contact = "Nunc nunc erat, molestie a nisl et, facilisis vestibulum arcu. Nulla sit amet mauris est. Aenean sed dolor eu massa pellentesque lobortis maximus eu dolor. Nunc non justo ex. Quisque scelerisque eros ac viverra pulvinar. Etiam pharetra, nisl eget luctus efficitur, lorem tellus viverra augue, in tincidunt augue orci eget tortor. Curabitur gravida eros vel maximus fringilla. Proin pulvinar pharetra ligula. In tincidunt eleifend enim, et vestibulum lorem laoreet eu. Donec tristique ipsum non pretium feugiat. Proin sodales dapibus elit ac hendrerit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec orci ipsum, facilisis nec scelerisque nec, vestibulum at ipsum.";
 
-let posts = [
-    {
-        date: '8 JUL 2021, 6:40 PM',
-        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus fermentum dui, et porta diam lacinia a. Vestibulum mi quam, viverra vel metus finibus, gravida finibus elit. Pellentesque posuere, leo sit amet luctus consectetur, orci dolor dignissim magna, sit amet dignissim sapien dui non nulla. Pellentesque vel suscipit est. Maecenas pretium sapien consectetur tellus tincidunt, ac lobortis diam aliquet. Nam erat sem, consequat non molestie at, egestas sit amet velit. Phasellus diam lectus, ultricies sed vehicula sed, viverra a leo."
-    }
-]
+let postCount = 0;
+// changed key to string, which would allow dynamic access based on variable value
+let posts = {
+    "general": [{
+        postId: 1,
+        date: '8 July 2021, 6:40 PM',
+        message: '542 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus fermentum dui, et porta diam lacinia a. Vestibulum mi quam, viverra vel metus finibus, gravida finibus elit. Pellentesque posuere, leo sit amet luctus consectetur, orci dolor digniss'
+    }],
+    "technology": [],
+    "politics": [],
+    "socialMedia": [],
+    "lifestyle": []
+}
+
+const categories = ['general', 'technology', 'politics', 'socialMedia', 'lifestyle']
+
 // End starting variables
 
 // Start Get routes
@@ -34,12 +44,17 @@ app.get('/', (req, res) => {
 
 app.get('/posts/:category', (req, res) => {
     
-    const postCateg = _.lowerCase(req.params.category);
-    console.log(postCateg);
+    const postCateg = req.params.category;
     
-    res.render('posts', {
-        postCategory: postCateg
-    });
+    if (categories.includes(_.camelCase(postCateg))){
+        res.render('posts', {
+            postCategory: _.startCase(postCateg),
+            posts: posts[_.camelCase(postCateg)]
+        });
+    } else {
+        res.redirect('/')
+    }
+        
 });
 
 app.get('/about', (req, res) => {
@@ -78,19 +93,22 @@ app.get('/posts/:postId', (req, res) =>{
 app.post('/compose', (req, res) =>{
     
     const composedMsg = req.body.composed;
+    let category = _.camelCase(req.body.category);
 
     if (strHelper.isEmpty(composedMsg)){
         res.redirect("/compose");
-    }else {
+    } else if (!categories.includes(category)) {
+        // how to re render
+    } else {
 
         const newPost = {
             date: dateHelper.dateToday(),
             message: composedMsg
         };
 
-        posts.push(newPost);
+        posts[category].push(newPost);
 
-        res.redirect("/");
+        res.redirect(`/posts/${category}`);
     }
 });
 

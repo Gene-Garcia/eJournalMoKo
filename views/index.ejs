@@ -1,32 +1,10 @@
 <%- include('partials/header') -%>
 
+<a href="/compose">compose</a>
+
 <div class="page-heading">
     <span class="title"><span class="highlight">e</span>Journal<span class="highlight">Mo</span>Ko</span>
     <h1>Welcomes You!</h1>
-</div>
-
-<div class="sub-content">
-
-    <% for (let i = 0; i < posts.length; i++) { %>
-        <div class="rounded-3 p-3 mb-4 shadow-sm">
-            <p class="post-message">
-                <%= posts[i].message.length %>
-
-                <% if (posts[i].message.length >= 250) { %>
-                    <%= posts[i].message.slice(0, 250) %>
-                    <a href=<%= '/posts/'+i %> class="post-link">see more...</a>
-                <% } else { %>
-                    <%= posts[i].message %>
-                <% } %>
-            </p>
-            
-            <div class="text-end">
-                <span class="post-date"><%= posts[i].date %></span>
-            </div>
-        </div>
-    <% } %>
-    
-    <!-- we can also use foreach(e=>{e.message e.date} but we need the index which will serve as its id -->
 </div>
 
 <%- include('partials/footer') -%>
