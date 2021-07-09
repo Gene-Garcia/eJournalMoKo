@@ -1,5 +1,5 @@
 {
-  "name": "journalmoko",
+  "name": "ejournalmoko",
   "version": "1.0.0",
   "description": "A blog web application that allows users to post anonymously",
   "main": "app.js",
