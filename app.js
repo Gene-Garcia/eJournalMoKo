@@ -31,6 +31,16 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/posts/:category', (req, res) => {
+    
+    const postCateg = req.params.category;
+    console.log(postCateg);
+    
+    res.render('posts', {
+        postCategory: postCateg
+    });
+});
+
 app.get('/about', (req, res) => {
     res.render('about', {
         about:about

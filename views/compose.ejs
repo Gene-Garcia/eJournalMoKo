@@ -10,7 +10,28 @@
 
     <form class="" action="/compose" method="POST">
         <div class="mb-3">
-            <textarea name="composed" class="form-control" placeholder="What's in your mind?" rows="6"></textarea>
+            <div class="d-flex flex-row mb-2">
+                <div class="my-auto">
+                    <label for="select" class="form-label mb-0">eJournalMoKo category</label>
+                </div>
+
+                <div class="px-2 my-auto">
+                    <span class="my-auto bi bi-info-circle"></span>
+                </div>
+              </div>
+            
+            <select class="form-select" name="category" required>
+                <option value="" selected>Select a post category</option>
+                <option value="general">General</option>
+                <option value="technology">Technology</option>
+                <option value="politics">Politics</option>
+                <option value="social-media">Social Media</option>
+                <option value="lifestyle">Lifestyle</option>
+              </select>
+        </div>
+
+        <div class="mb-3">
+            <textarea name="composed" class="form-control" placeholder="What's in your mind?" rows="6" required></textarea>
         </div>
 
         <div>
