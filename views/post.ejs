@@ -1,0 +1,22 @@
+<%- include('partials/header') -%>
+
+<div class="page-heading">
+    <span class="title">Journal<span class="highlight">Mo</span>Ko</span>
+    <h1>Post</h1>
+</div>
+
+<div class="sub-content">
+
+    <div class="rounded-3 p-3 mb-4 shadow-sm">
+        <p class="post-message">
+            <%= post.message %>
+        </p>
+        
+        <div class="text-end">
+            <span class="post-date"><%= post.date %></span>
+        </div>
+    </div>
+
+</div>
+
+<%- include('partials/footer') -%>

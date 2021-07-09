@@ -1,0 +1,141 @@
+:root{
+    --off-white: #F6F5F5;
+    --theme: #145374;
+    --theme-dark: #00334E;
+    --accent: #EE6F57;
+}
+
+html body {
+    background-color: var(--off-white);
+    height: 100vh;
+}
+
+/* Nav */
+
+#first-nav .navbar-brand {
+    font-size: 23px;
+    font-family: 'Righteous', serif;
+    font-weight: 500;
+}
+
+
+#first-nav .navbar-brand .title .highlight{
+    color: var(--accent);
+}
+
+#first-nav .nav-link {
+    font-family: 'Rubik', sans-serif;
+    color: var(--off-white);
+    letter-spacing: 2px;
+}
+
+#first-nav .nav-link:hover{
+    color: grey;
+}
+
+#first-nav .nav-link.active{
+    color: var(--accent);
+    font-weight: 500;
+}
+
+/* Category nav */
+
+#category-nav {
+    background-color: #fff;
+}
+
+#category-nav .nav-link{
+    font-family: 'Rubik', sans-serif;
+    color: black;
+}
+
+#category-nav .nav-link:hover{
+    color: var(--accent)
+}
+
+#category-nav .nav-link.active{
+    color: var(--theme);
+    font-weight: 500;
+}
+
+/* Content */
+
+.content{
+    margin-top: 50px;
+}
+
+.page-heading h1, .page-heading .title {
+    display: inline;
+}
+
+.content h1 {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    margin-right: 2px;
+}
+
+.content .page-heading .title{
+    font-family: 'Righteous', serif;
+}
+
+.content .page-heading .title .highlight{
+    color: var(--accent);
+}
+
+.page-heading h1, .page-heading .title{
+    font-size: 26px;
+}
+
+.sub-content{
+    margin-top: 25px;
+}
+
+/* Posts styles */
+
+.post-message{
+    margin-bottom: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    word-spacing: 5px;
+    line-height: 30px;
+}
+
+.post-date {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.post-link{
+    text-decoration: none;
+    color: var(--accent);
+}
+
+.post-link:hover{
+    color: var(--theme);
+}
+
+/* Other components */
+
+.btn-accent{
+    background-color: var(--accent);
+    border: none;
+    letter-spacing: 3px;
+}
+
+/* Footer  */
+
+.footer {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    color: var(--theme);
+    text-align: center;
+
+    /* position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0; */
+
+    padding-bottom: 10px;
+}
