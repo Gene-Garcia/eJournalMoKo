@@ -1,4 +1,5 @@
 const express = require('express');
+const _ = require('lodash');
 
 // Start user defined modules
 const strHelper = require(`${__dirname}\\modules\\stringHelper.js`);
@@ -33,7 +34,7 @@ app.get('/', (req, res) => {
 
 app.get('/posts/:category', (req, res) => {
     
-    const postCateg = req.params.category;
+    const postCateg = _.lowerCase(req.params.category);
     console.log(postCateg);
     
     res.render('posts', {
