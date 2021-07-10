@@ -4,6 +4,7 @@ const _ = require('lodash');
 // Start user defined modules
 const strHelper = require(`${__dirname}/modules/stringHelper.js`);
 const dateHelper = require(`${__dirname}/modules/dateHelper.js`);
+const mongoDr = require(`${__dirname}/modules/mongoDriver.js`);
 // End user defined modules
 
 const app = express();
@@ -37,9 +38,17 @@ const categories = ['general', 'technology', 'politics', 'socialMedia', 'lifesty
 
 // Start Get routes
 app.get('/', (req, res) => {
-    res.render('index', {
-        posts:posts
-    });
+
+    mongoDr.run((data) => {
+        
+        console.log(data);
+
+        res.render('index', {
+            posts:posts
+        });
+
+    }).catch(console.dir);
+        
 });
 
 app.get('/posts/:category', (req, res) => {
