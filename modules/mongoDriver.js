@@ -38,3 +38,19 @@ exports.run = async (fn) => {
         await client.close();
     }
 }
+
+// usage
+// const mongoDr = require(`${__dirname}/modules/mongoDriver.js`);
+// app.get('/', (req, res) => {
+
+//     mongoDr.run((data) => {
+        
+//         console.log(data);
+
+//         res.render('index', {
+//             posts:posts
+//         });
+
+//     }).catch(console.dir);
+        
+// });
