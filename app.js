@@ -4,6 +4,7 @@ const _ = require('lodash');
 // Start user defined modules
 const strHelper = require(`${__dirname}/modules/stringHelper.js`);
 const dateHelper = require(`${__dirname}/modules/dateHelper.js`);
+const odm = require(`${__dirname}/modules/mongoose.js`);
 // End user defined modules
 
 const app = express();
@@ -38,6 +39,13 @@ const categories = ['general', 'technology', 'politics', 'socialMedia', 'lifesty
 // Start Get routes
 app.get('/', (req, res) => {
 
+    odm.insertPost({
+        message: 'm2',
+        date: 'd2',
+        category: 'c2'
+    }, (newPostId) => {
+        console.log("New Post with id " + newPostId);
+    });
     
     res.end();    
 });
