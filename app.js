@@ -38,16 +38,7 @@ const categories = ['general', 'technology', 'politics', 'socialMedia', 'lifesty
 
 // Start Get routes
 app.get('/', (req, res) => {
-
-    odm.insertPost({
-        message: 'm2',
-        date: 'd2',
-        category: 'c2'
-    }, (newPostId) => {
-        console.log("New Post with id " + newPostId);
-    });
-    
-    res.end();    
+    res.render('index');
 });
 
 app.get('/posts/:category', (req, res) => {
@@ -116,7 +107,21 @@ app.post('/compose', (req, res) =>{
 
         posts[category].push(newPost);
 
-        res.redirect(`/posts/${category}`);
+        // Db Posting
+        // error encountered when we post for the second time
+        // in a single runtime
+        // but this new implementation solved the problem
+        // reference: https://thoughtspeed7.medium.com/reusing-mongoose-schema-1f83a5c10caf
+        const post = new odm.PostModel({
+            message: composedMsg,
+            date: dateHelper.dateToday(),
+            category: category
+        });
+        post.save().then(() => {
+            console.log('New record inserted');
+
+            res.redirect(`/posts/${category}`);
+        });
     }
 });
 
