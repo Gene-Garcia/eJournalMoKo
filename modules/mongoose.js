@@ -16,7 +16,8 @@ const postSchema = new mongoose.Schema({
     category: String, // tech, general, lifestyle, soc med, politics
 });
 
-// create the database/model/collection/document
+// create the database/model/collection
+// document is row of a record
 const PostModel = mongoose.model(COLLECTION_NAME, postSchema);
 
 exports.PostModel = PostModel;
