@@ -14,7 +14,7 @@
 
                 <% if (posts[i].message.length >= 250) { %>
                     <%= posts[i].message.slice(0, 250) %>
-                    <a href=<%= '/posts/'+ posts[i]._id %> class="post-link">see more...</a>
+                    <a href=<%= '/post/'+ posts[i]._id %> class="post-link">see more...</a>
                 <% } else { %>
                     <%= posts[i].message %>
                 <% } %>

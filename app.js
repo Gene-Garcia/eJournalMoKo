@@ -45,26 +45,29 @@ app.get('/posts/:category', (req, res) => {
     
     const postCateg = req.params.category;
     
-    // find
-    odm.PostModel.find({
-        category: _.camelCase(postCateg)
-    }, 'message date', (err, data) => {
+    if (!categories.includes(_.camelCase(postCateg))){
+        res.redirect('/')
+    } else {
 
-        res.render('posts', {
-            postCategory: _.startCase(postCateg),
-            posts: data
+        // find
+        odm.PostModel.find({
+            category: _.camelCase(postCateg)
+        }, 'message date', (err, data) => {
+
+            if (data === undefined || data === null){
+                res.redirect('/');
+            }
+            else {
+                res.render('posts', {
+                    postCategory: _.startCase(postCateg),
+                    posts: data
+                });
+            }
+
         });
 
-        // if (categories.includes(_.camelCase(postCateg))){
-        //     res.render('posts', {
-        //         postCategory: _.startCase(postCateg),
-        //         posts: posts[_.camelCase(postCateg)]
-        //     });
-        // } else {
-        //     res.redirect('/')
-        // }
+    }
 
-    });
 });
 
 app.get('/about', (req, res) => {
@@ -83,18 +86,21 @@ app.get('/compose', (req, res) => {
     res.render('compose');
 });
 
-app.get('/posts/:postId', (req, res) =>{
+app.get('/post/:postId', (req, res) =>{
 
-    const toView = posts[parseInt(req.params.postId)];
-
-
-    if (toView === undefined){
-        res.redirect('/');
-    } else {
-        res.render('post', {
-            post: toView
-        });
-    }
+    var postId = req.params.postId;
+    
+    console.log(postId);
+    // find by id
+    odm.PostModel.findById(postId, 'message date', (err, data) => {
+        if (data === undefined || data === null){
+            res.redirect('/');
+        } else {
+            res.render('post', {
+                post: data
+            });
+        }
+    });
 });
 
 // End Get Routes
