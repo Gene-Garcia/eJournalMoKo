@@ -123,21 +123,99 @@ app.post('/compose', (req, res) =>{
 // End Post Routes
 
 // Admin Routes
+
+
+const p = [
+    {
+        category: 'General',
+        posts: [
+            {
+                _id: '1312312',
+                message: 'lorem ipsum',
+                date: '19 AUG 2021, 07:30 AM'
+            },
+            {
+                _id: '1312312',
+                message: 'lorem ipsum dolor et al',
+                date: '11 SEPT 2021, 01:20 PM'
+            }
+        ]
+    },
+    {
+        category: 'Technology',
+        posts: [
+            {
+                _id: '1312312',
+                message: 'lorem ipsum',
+                date: '19 AUG 2021, 07:30 AM'
+            },
+            {
+                _id: '1312312',
+                message: 'lorem ipsum dolor et al',
+                date: '11 SEPT 2021, 01:20 PM'
+            }
+        ]
+    },
+    {
+        category: 'Politics',
+        posts: [
+            {
+                _id: '1312312',
+                message: 'lorem ipsum',
+                date: '19 AUG 2021, 07:30 AM'
+            },
+            {
+                _id: '1312312',
+                message: 'lorem ipsum dolor et al',
+                date: '11 SEPT 2021, 01:20 PM'
+            }
+        ]
+    },
+    {
+        category: 'Social Media',
+        posts: [
+            {
+                _id: '1312312',
+                message: 'lorem ipsum',
+                date: '19 AUG 2021, 07:30 AM'
+            },
+            {
+                _id: '1312312',
+                message: 'lorem ipsum dolor et al',
+                date: '11 SEPT 2021, 01:20 PM'
+            }
+        ]
+    },
+    {
+        category: 'Lifestyle',
+        posts: [
+            {
+                _id: '1312312',
+                message: 'lorem ipsum',
+                date: '19 AUG 2021, 07:30 AM'
+            },
+            {
+                _id: '1312312',
+                message: 'lorem ipsum dolor et al',
+                date: '11 SEPT 2021, 01:20 PM'
+            }
+        ]
+    }
+]
+
+
 app.get('/admin/manage', (req, res) => {
     res.render('admin/manage', {
-        posts: [{
-            message:'afwefwe',
-            date: '19 JUL 2021, 07:12 PM',
-            _id: '1312aCSA'
-        },{
-            message:'afwefwe',
-            date: '19 JUL 2021, 07:12 PM',
-            _id: '1312aCSA'
-        }]
+        posts: p
     });
 });
 
-// app.post('/admin/delete/:postId');
+app.get('/admin/archive/:postId', (req, res) => {
+
+    console.log(req.params.postId);
+
+    res.end();
+});
 
 // app.post('/admin/update');
 // End admin routes
