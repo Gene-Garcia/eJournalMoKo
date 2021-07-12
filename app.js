@@ -45,15 +45,26 @@ app.get('/posts/:category', (req, res) => {
     
     const postCateg = req.params.category;
     
-    if (categories.includes(_.camelCase(postCateg))){
+    // find
+    odm.PostModel.find({
+        category: _.camelCase(postCateg)
+    }, 'message date', (err, data) => {
+
         res.render('posts', {
             postCategory: _.startCase(postCateg),
-            posts: posts[_.camelCase(postCateg)]
+            posts: data
         });
-    } else {
-        res.redirect('/')
-    }
-        
+
+        // if (categories.includes(_.camelCase(postCateg))){
+        //     res.render('posts', {
+        //         postCategory: _.startCase(postCateg),
+        //         posts: posts[_.camelCase(postCateg)]
+        //     });
+        // } else {
+        //     res.redirect('/')
+        // }
+
+    });
 });
 
 app.get('/about', (req, res) => {
@@ -73,8 +84,9 @@ app.get('/compose', (req, res) => {
 });
 
 app.get('/posts/:postId', (req, res) =>{
-    
+
     const toView = posts[parseInt(req.params.postId)];
+
 
     if (toView === undefined){
         res.redirect('/');
