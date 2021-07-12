@@ -1,0 +1,37 @@
+:root{
+    --off-white: #F6F5F5;
+    --theme: #145374;
+    --theme-dark: #00334E;
+    --accent: #EE6F57;
+}
+
+html body {
+    background-color: var(--off-white);
+    height: 100vh;
+}
+/* Nav */
+.navbar .navbar-brand {
+    font-size: 23px;
+    font-family: 'Righteous', serif;
+    font-weight: 500;
+}
+
+
+.navbar .navbar-brand .title .highlight{
+    color: var(--accent);
+}
+
+.navbar .nav-link {
+    font-family: 'Rubik', sans-serif;
+    color: var(--off-white);
+    letter-spacing: 2px;
+}
+
+.navbar .nav-link:hover{
+    color: grey;
+}
+
+.navbar .navbar-nav .nav-link.active{
+    color: var(--accent);
+    font-weight: 500;
+}

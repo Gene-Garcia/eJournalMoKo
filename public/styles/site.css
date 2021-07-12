@@ -116,6 +116,17 @@ html body {
     color: var(--theme);
 }
 
+.general-posts-container .posts-container .post-category{
+    color: var(--accent);
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.general-posts-container .posts-container .btn{
+    border:hidden
+}
+
 /* Other components */
 
 .btn-accent{
@@ -123,6 +134,7 @@ html body {
     border: none;
     letter-spacing: 3px;
 }
+
 
 /* Footer  */
 
@@ -138,4 +150,13 @@ html body {
     right: 0; */
 
     padding-bottom: 10px;
+}
+
+.footer a {
+    color: var(--theme);
+    text-decoration: none;
+}
+
+.footer a:hover{
+    color: var(--accent);
 }

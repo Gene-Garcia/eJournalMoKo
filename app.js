@@ -10,6 +10,7 @@ const odm = require(`${__dirname}/modules/mongoose.js`);
 const app = express();
 
 app.set('view engine', 'ejs');
+app.set("views", __dirname + '/views');
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(__dirname+'/public'));
@@ -88,11 +89,9 @@ app.get('/post/:postId', (req, res) =>{
         }
     });
 });
-
 // End Get Routes
 
 // Start Post Routes
-
 app.post('/compose', (req, res) =>{
     
     const composedMsg = req.body.composed;
@@ -121,8 +120,27 @@ app.post('/compose', (req, res) =>{
         });
     }
 });
-
 // End Post Routes
+
+// Admin Routes
+app.get('/admin/manage', (req, res) => {
+    res.render('admin/manage', {
+        posts: [{
+            message:'afwefwe',
+            date: '19 JUL 2021, 07:12 PM',
+            _id: '1312aCSA'
+        },{
+            message:'afwefwe',
+            date: '19 JUL 2021, 07:12 PM',
+            _id: '1312aCSA'
+        }]
+    });
+});
+
+// app.post('/admin/delete/:postId');
+
+// app.post('/admin/update');
+// End admin routes
 
 let port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Blog application listening to port ${port}`));
