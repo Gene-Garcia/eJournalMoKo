@@ -124,89 +124,21 @@ app.post('/compose', (req, res) =>{
 
 // Admin Routes
 
-
-const p = [
-    {
-        category: 'General',
-        posts: [
-            {
-                _id: '1312312',
-                message: 'Proin at placerat mi. Ut posuere, nulla eu pretium tempor, lorem augue laoreet nibh, sit amet vulputate orci purus nec risus. ',
-                date: '19 AUG 2021, 07:30 AM'
-            },
-            {
-                _id: '1312312',
-                message: 'lorem ipsum dolor et al',
-                date: '11 SEPT 2021, 01:20 PM'
-            }
-        ]
-    },
-    {
-        category: 'Technology',
-        posts: [
-            {
-                _id: '1312312',
-                message: 'lorem ipsum',
-                date: '19 AUG 2021, 07:30 AM'
-            },
-            {
-                _id: '1312312',
-                message: 'lorem ipsum dolor et al',
-                date: '11 SEPT 2021, 01:20 PM'
-            }
-        ]
-    },
-    {
-        category: 'Politics',
-        posts: [
-            {
-                _id: '1312312',
-                message: 'lorem ipsum',
-                date: '19 AUG 2021, 07:30 AM'
-            },
-            {
-                _id: '1312312',
-                message: 'lorem ipsum dolor et al',
-                date: '11 SEPT 2021, 01:20 PM'
-            }
-        ]
-    },
-    {
-        category: 'Social Media',
-        posts: [
-            {
-                _id: '1312312',
-                message: 'lorem ipsum',
-                date: '19 AUG 2021, 07:30 AM'
-            },
-            {
-                _id: '1312312',
-                message: 'lorem ipsum dolor et al',
-                date: '11 SEPT 2021, 01:20 PM'
-            }
-        ]
-    },
-    {
-        category: 'Lifestyle',
-        posts: [
-            {
-                _id: '1312312',
-                message: 'lorem ipsum',
-                date: '19 AUG 2021, 07:30 AM'
-            },
-            {
-                _id: '1312312',
-                message: 'lorem ipsum dolor et al',
-                date: '11 SEPT 2021, 01:20 PM'
-            }
-        ]
-    }
-]
-
-
 app.get('/admin/manage', (req, res) => {
-    res.render('admin/manage', {
-        posts: p
+
+    odm.PostModel.find({}, (err, data) => {
+
+        const formattedData = _.chain(data)
+        // Group the elements of Array based on `color` property
+        .groupBy("category")
+        // `key` is group's name (color), `value` is the array of objects
+        .map((postsList, categoryKey) => ({ category: _.startCase(categoryKey), posts: postsList }))
+        .value();
+
+        res.render('admin/manage', {
+            posts: formattedData
+        });
+
     });
 });
 
