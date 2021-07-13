@@ -8,10 +8,8 @@
 <div class="sub-content">
 
     <% for (let i = 0; i < posts.length; i++) { %>
-        <div class="rounded-3 p-3 mb-4 shadow-sm">
+        <div class="post-container rounded-3 p-3 mb-4 shadow-sm">
             <p class="post-message">
-                <%= posts[i].message.length %>
-
                 <% if (posts[i].message.length >= 250) { %>
                     <%= posts[i].message.slice(0, 250) %>
                     <a href=<%= '/post/'+ posts[i]._id %> class="post-link">see more...</a>

@@ -93,6 +93,10 @@ html body {
 
 /* Posts styles */
 
+.post-container{
+    background-color: #fff;
+}
+
 .post-message{
     margin-bottom: 0;
     font-family: 'Poppins', sans-serif;
@@ -138,7 +142,8 @@ html body {
 .btn-accent{
     background-color: var(--accent);
     border: none;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+    font-size: 13px;
 }
 
 
