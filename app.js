@@ -38,7 +38,8 @@ app.get('/posts/:category', (req, res) => {
 
         // find
         odm.PostModel.find({
-            category: _.camelCase(postCateg)
+            category: _.camelCase(postCateg),
+            available: true
         }, 'message date', (err, data) => {
 
             if (data === undefined || data === null){
@@ -79,10 +80,13 @@ app.get('/post/:postId', (req, res) =>{
     
     // console.log(postId);
     // find by id
-    odm.PostModel.findById(postId, 'message date', (err, data) => {
+    odm.PostModel.findById(postId, 'message date available', {available: true}, (err, data) => {
+    
         if (data === undefined || data === null){
             res.redirect('/');
-        } else {
+        } else if (data.available == false) { // if the document is available:false, it will return only that record
+            res.redirect('/');
+        }  else {
             res.render('post', {
                 post: data
             });
@@ -127,7 +131,7 @@ app.post('/compose', (req, res) =>{
 
 app.get('/admin/manage', (req, res) => {
 
-    odm.PostModel.find({}, (err, data) => {
+    odm.PostModel.find({available:true}, (err, data) => {
 
         const formattedData = _.chain(data)
         // Group the elements of Array based on `color` property
@@ -147,7 +151,12 @@ app.get('/admin/archive/:postId', (req, res) => {
 
     const postId = req.params.postId;
 
-    res.end();
+    odm.PostModel.findByIdAndUpdate(postId, { $set: { available: false }}, (err) => {
+        if (err){
+            console.log(err);
+        } 
+        res.redirect('/admin/manage');
+    });
 });
 
 app.post('/admin/edit', (req, res) => {
