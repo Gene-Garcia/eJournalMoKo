@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 const DB_NAME = 'ejournalmoko';
 const COLLECTION_NAME = 'Post';
 
-mongoose.connect(`mongodb://localhost:27017/${DB_NAME}`, {
+const DB_ADMIN_USERNAME = 'ejourmalmoko-admin';
+const DB_ADMIN_PASSWORD = process.env.DB_PASSWORD;
+
+mongoose.connect(`mongodb+srv://ejournalmoko-admin:${DB_ADMIN_PASSWORD}@ejournalmoko.sofzm.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`, {
     useNewUrlParser: true, 
     useUnifiedTopology: true
 });
