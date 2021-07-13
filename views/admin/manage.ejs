@@ -1,42 +1,63 @@
 <%- include('../partials/admin-header') -%>
 
-    <div class="page-heading">
-        <h1>All</h1>
-        <span class="title"><span class="highlight">e</span>Journal<span class="highlight">Mo</span>Ko</span>
-        <h1>Posts</h1>
-    </div>
+<div class="page-heading">
+    <h1>All</h1>
+    <span class="title"><span class="highlight">e</span>Journal<span class="highlight">Mo</span>Ko</span>
+    <h1>Posts</h1>
+</div>
 
-    <div class="general-posts-container pt-3">
-        <% posts.forEach(e => { %>
-            <div class="posts-container">
-                <p class="post-category"><%= e.category %></p>
+<% var showCounter = 0; %>
 
-                <% e.posts.forEach(f => { %>
-                    <div class="row g-0 rounded-3 mb-4 shadow-sm">
-                        <div class="col-md-11 px-3 pt-3 pb-1">
-                            <p class="post-message">
-                                <%= f.message %>
-                            </p>
-                            
-                            <div class="text-end">
-                                <span class="post-date"><%= f.date %></span>
-                            </div>
-                        </div>
-        
-                        <div class="col-md-1 text-end text-md-center my-auto p-0">
-                            <a href="#" class="btn btn-outline-secondary rounded-0" aria-current="page">
+<div class="general-posts-container pt-3">
+    <% posts.forEach(e => { %>
+    <div class="posts-container mb-5">
+        <div class="mb-3">
+            <p class="post-category d-inline me-2"><%= e.category %></p>
+
+            <a class="d-inline post-collapse-button" data-bs-toggle="collapse" href=<%= "#collapse" + e.category %>
+                role="button" aria-expanded="false" aria-controls=<%= "collapse" + e.category %>>
+                <i class="bi bi-chevron-double-down"></i>
+            </a>
+        </div>
+
+        <% if (showCounter++ == 0) { %>
+        <div class="collapse show" id=<%= "collapse" + e.category %>>
+        <% } else { %>
+        <div class="collapse" id=<%= "collapse" + e.category %>>
+        <% } %>
+            <% e.posts.forEach(f => { %>
+            <div class="row g-0 rounded-3 mb-4 py-2 shadow-sm">
+                <div class="col-sm-10 px-3 pb-1">
+                    <p class="post-message">
+                        <%= f.message %>
+                    </p>
+
+                    <div class="mt-4">
+                        <span class="post-date"><%= f.date %></span>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="d-flex flex-row-reverse bd-highlight">
+                        <div class="">
+                            <a href="#" class="btn btn-outline-dark rounded-0 px-4" aria-current="page">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
-        
-                            <a href=<%= "/admin/archive/" + f._id %> class="btn btn-outline-dark rounded-0 ">
+                        </div>
+
+                        <div class="">
+                            <a href=<%= "/admin/archive/" + f._id %> class="btn btn-outline-secondary rounded-0 px-4">
                                 <i class="bi bi-archive"></i>
                             </a>
                         </div>
                     </div>
-                <% }); %>
-
+                </div>
             </div>
-        <% }); %>
+            <% }); %>
+        </div>
+
     </div>
+    <% }); %>
+</div>
 
 <%- include('../partials/admin-footer') -%>

@@ -131,7 +131,7 @@ const p = [
         posts: [
             {
                 _id: '1312312',
-                message: 'lorem ipsum',
+                message: 'Proin at placerat mi. Ut posuere, nulla eu pretium tempor, lorem augue laoreet nibh, sit amet vulputate orci purus nec risus. ',
                 date: '19 AUG 2021, 07:30 AM'
             },
             {

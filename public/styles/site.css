@@ -25,6 +25,7 @@ html body {
 
 #first-nav .nav-link {
     font-family: 'Rubik', sans-serif;
+    font-size: 15px;
     color: var(--off-white);
     letter-spacing: 2px;
 }
@@ -83,7 +84,7 @@ html body {
 }
 
 .page-heading h1, .page-heading .title{
-    font-size: 26px;
+    font-size: 24px;
 }
 
 .sub-content{
@@ -117,14 +118,19 @@ html body {
 }
 
 .general-posts-container .posts-container .post-category{
-    color: var(--accent);
+    color: var(--theme-dark);
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
-    margin-bottom: 10px;
+    font-size: 18px;
 }
 
 .general-posts-container .posts-container .btn{
-    border:hidden
+    border: hidden;
+}
+
+.post-collapse-button .bi{
+    color: var(--theme-dark);
+    font-weight: 600;
 }
 
 /* Other components */
