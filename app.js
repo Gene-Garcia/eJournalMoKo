@@ -111,7 +111,8 @@ app.post('/compose', (req, res) =>{
         const post = new odm.PostModel({
             message: composedMsg,
             date: dateHelper.dateToday(),
-            category: category
+            category: category,
+            available: true
         });
         post.save().then(() => {
             console.log('New record inserted');
@@ -144,7 +145,7 @@ app.get('/admin/manage', (req, res) => {
 
 app.get('/admin/archive/:postId', (req, res) => {
 
-    console.log(req.params.postId);
+    const postId = req.params.postId;
 
     res.end();
 });
@@ -165,7 +166,7 @@ app.post('/admin/edit', (req, res) => {
     });
 });
 
-app.post('/admin/edit/post', (req, res) => {
+app.post('/admin/update', (req, res) => {
     const postId = req.body.postId;
     const newMessage = req.body.postMessage;
 
@@ -179,7 +180,6 @@ app.post('/admin/edit/post', (req, res) => {
     });
 });
 
-// app.post('/admin/update');
 // End admin routes
 
 let port = process.env.PORT || 5000;

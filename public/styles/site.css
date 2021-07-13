@@ -25,7 +25,7 @@ html body {
 
 #first-nav .nav-link {
     font-family: 'Rubik', sans-serif;
-    font-size: 15px;
+    font-size: 13px;
     color: var(--off-white);
     letter-spacing: 2px;
 }
