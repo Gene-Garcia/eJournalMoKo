@@ -159,6 +159,34 @@ app.get('/admin/archive/:postId', (req, res) => {
     });
 });
 
+app.get('/admin/archives', (req, res) => {
+    odm.PostModel.find({available:false}, (err, archived) => {
+
+        const formattedData = _.chain(archived)
+        // Group the elements of Array based on `color` property
+        .groupBy("category")
+        // `key` is group's name (color), `value` is the array of objects
+        .map((postsList, categoryKey) => ({ category: _.startCase(categoryKey), posts: postsList }))
+        .value();
+
+        res.render('admin/archives', {
+            posts: formattedData
+        });
+
+    });
+});
+
+app.get('/admin/unarchive/:postId', (req, res) => {
+    const postId = req.params.postId;
+
+    odm.PostModel.findByIdAndUpdate(postId, { $set: { available: true }}, (err) => {
+        if (err){
+            console.log(err);
+        } 
+        res.redirect('/admin/archives');
+    });
+});
+
 app.post('/admin/edit', (req, res) => {
     const postId = req.body.postId;
 
