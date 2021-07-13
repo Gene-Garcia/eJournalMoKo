@@ -1,0 +1,39 @@
+<%- include('../partials/admin-header') -%>
+
+<div class="page-heading">
+    <h1>Edit an</h1>
+    <span class="title"><span class="highlight">e</span>Journal<span class="highlight">Mo</span>Ko</span>
+    <h1>Post</h1>
+</div>
+
+<div class="general-posts-container pt-3">
+    <div class="posts-container mb-5">
+
+        <div class="row g-0 rounded-3 mb-4 py-2 shadow-sm">
+            <div class="col-12 px-3 pb-1">
+                <div class="mb-3">
+                    <p class="post-message">
+                        Date Posted: <%= post.date %>
+                    </p>
+                </div>
+
+                <div class="">
+                    <Form action="/admin/edit/post" method="POST">
+                        <input type="hidden" value=<%= post._id%> name="postId">
+
+                        <div class="mb-3">
+                            <textarea name="postMessage" class="form-control" rows="6" required><%= post.message %></textarea>
+                        </div>
+                
+                        <div>
+                            <input type="submit" class="btn btn-secondary btn-accent" value="Update Post" >
+                        </div>
+                    </Form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('../partials/admin-footer') -%>

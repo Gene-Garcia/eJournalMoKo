@@ -40,9 +40,10 @@
                 <div class="col-sm-2">
                     <div class="d-flex flex-row-reverse bd-highlight">
                         <div class="">
-                            <a href="#" class="btn btn-outline-dark rounded-0 px-4" aria-current="page">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
+                            <form action="/admin/edit" method="POST">
+                                <input type="hidden" value=<%= f._id %> name="postId">
+                                <button role="submit" type="submit" class="btn btn-outline-dark rounded-0 px-4"><i class="bi bi-pencil-square"></i></button>
+                            </form>
                         </div>
 
                         <div class="">

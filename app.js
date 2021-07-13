@@ -149,6 +149,36 @@ app.get('/admin/archive/:postId', (req, res) => {
     res.end();
 });
 
+app.post('/admin/edit', (req, res) => {
+    const postId = req.body.postId;
+
+    odm.PostModel.findById(postId, (err, post) => {
+        
+        if (err || post === null || post === undefined){
+            res.redirect('/admin/manage');
+        } else{ 
+            res.render('admin/edit', {
+                post: post
+            });
+        }
+
+    });
+});
+
+app.post('/admin/edit/post', (req, res) => {
+    const postId = req.body.postId;
+    const newMessage = req.body.postMessage;
+
+    odm.PostModel.findByIdAndUpdate(postId, { $set: { message: newMessage }}, (err) => {
+        if (err){
+            console.log(err);
+            res.redirect('admin/manage');
+        } else{
+            res.redirect('/post/' + postId);
+        }
+    });
+});
+
 // app.post('/admin/update');
 // End admin routes
 

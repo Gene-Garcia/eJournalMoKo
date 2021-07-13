@@ -138,7 +138,7 @@ html body {
 .btn-accent{
     background-color: var(--accent);
     border: none;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 
 
