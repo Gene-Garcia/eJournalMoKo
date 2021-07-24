@@ -4,7 +4,7 @@
   "description": "A blog web application that allows users to post anonymously",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "Gene Garcia",
   "license": "ISC",
