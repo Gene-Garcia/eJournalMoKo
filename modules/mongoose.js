@@ -1,12 +1,13 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 
 const DB_NAME = 'ejournalmoko';
 const COLLECTION_NAME = 'Post';
 
-const DB_ADMIN_USERNAME = 'ejourmalmoko-admin';
+const DB_ADMIN_USERNAME = process.env.DB_USERNAME;
 const DB_ADMIN_PASSWORD = process.env.DB_PASSWORD;
 
-mongoose.connect(`mongodb+srv://ejournalmoko-admin:${DB_ADMIN_PASSWORD}@ejournalmoko.sofzm.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`, {
+mongoose.connect(`mongodb+srv://${DB_ADMIN_USERNAME}:${DB_ADMIN_PASSWORD}@personal-cluster.sofzm.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`, {
     useNewUrlParser: true, 
     useUnifiedTopology: true
 });
